@@ -1,0 +1,48 @@
+<html>
+<head>
+<title>Home Automation System</title> 
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+body{
+	background-color: #414141;
+}
+p
+{
+	color: #999;
+	font-family: sans-serif;
+}
+
+
+</style>
+
+</head>
+<body> <div style="position:fixed;left:0px;top:0px;right:0px;bottom:0px;background-color:#000;z-index:2000; padding-top:60%;" id="overDiv">
+
+	<center><img src="includes/load.png" width="80px"></center>
+
+</div><center><br>
+	<p>Choose your Device</p>
+<a href="index.html"><img src="includes/on.png" width=30% style="padding: 0px 20px; "></a>
+<a href="index2.html"><img src="includes/fon.png" width=30% style="padding: 0px 20px; "></a><br>
+<a href="index3.html"><img src="includes/pon.png" width=30% style="padding: 0px 20px; "></a>
+
+
+</center>
+<script src="includes/fn.js"></script> <!-- This will read the script from the jquery -->
+<script type="text/javascript">
+$(document).ready(function(){
+$("#overDiv").fadeOut();
+
+console.log(AndroidInterface.IpAdrss());
+  $(".led").click(function(){
+    var p = $(this).attr('id'); 
+    /*alert(p);*/
+    // Getting the id value that which pin to toggle, pin 13 or pin 13 or pin 11
+    // Sending the request to the ip address of the server with the pin number to toggle the pin                                                                
+    $.get("http://"+AndroidInterface.IpAdrss()+"/", {pin:p}); // Sending the get request
+  });
+});
+</script>
+</body>
+</html>

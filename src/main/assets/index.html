@@ -1,0 +1,52 @@
+<html>
+<head>
+<title>Home Automation System</title> 
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+body{
+	background-color: #414141;
+}
+
+</style>
+<script type="text/javascript">
+function test()
+{
+   /* alert(window.document.pic.src);*/
+     //alert msg print like http://localhost/test/pic1.png
+    if (document.pic.src=='file:///android_asset/includes/on.png'){
+
+document.pic.src='file:///android_asset/includes/off.png';
+} 
+else if (document.pic.src=='file:///android_asset/includes/off.png'){
+
+document.pic.src='file:///android_asset/includes/on.png';
+}
+}
+</script>
+</head>
+<body>
+<div style="position:fixed;left:0px;top:0px;right:0px;bottom:0px;background-color:#000;z-index:2000; padding-top:60%;" id="overDiv">
+    <center><img src="includes/load.png" width="80px"></center>
+
+
+</div>
+<center>
+
+<img src="includes/off.png" id="11" class="led" name="pic" onclick="test()"/>
+</center>
+<script src="includes/fn.js"></script> <!-- This will read the script from the jquery -->
+<script type="text/javascript">
+$(document).ready(function(){
+$("#overDiv").fadeOut();
+  $(".led").click(function(){
+    var p = $(this).attr('id'); 
+    /*alert(p);*/
+    // Getting the id value that which pin to toggle, pin 13 or pin 13 or pin 11
+    // Sending the request to the ip address of the server with the pin number to toggle the pin                                                                
+    $.get("http://"+AndroidInterface.IpAdrss()+"/", {pin:p}); // Sending the get request
+  });
+});
+</script>
+</body>
+</html>
